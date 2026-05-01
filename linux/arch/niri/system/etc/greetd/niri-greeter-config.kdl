@@ -1,0 +1,92 @@
+// /etc/greetd/niri-greeter-config.kdl
+// Sincronizado con config.kdl del usuario — ghostty, layout correcto, modos reales
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+input {
+    keyboard {
+        xkb {
+            layout "latam"
+            options "grp:alt_shift_toggle"
+        }
+        repeat-delay 400
+        repeat-rate 40
+        numlock
+    }
+    touchpad {
+        tap
+        natural-scroll
+        click-method "clickfinger"
+    }
+}
+
+// Optimus: forzar render en Intel HD 630
+debug {
+    render-drm-device "/dev/dri/by-path/pci-0000:00:02.0-render"
+}
+
+// Layout sincronizado con config.kdl: eDP izquierda, LG centro, Samsung derecha
+output "eDP-1" {
+    mode "1920x1080@60.052"
+    scale 1.0
+    transform "normal"
+    position x=0 y=180
+}
+
+output "HDMI-A-2" {
+    mode "2560x1440@59.951"
+    scale 1.0
+    transform "normal"
+    position x=1920 y=0
+    focus-at-startup
+}
+
+output "DP-1" {
+    mode "1920x1080@60.000"
+    scale 1.0
+    transform "normal"
+    position x=4480 y=180
+}
+
+cursor {
+    xcursor-theme "Adwaita"
+    xcursor-size 24
+}
+
+prefer-no-csd
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+layout {
+    gaps 0
+    center-focused-column "never"
+    focus-ring {
+        off
+    }
+    border {
+        off
+    }
+}
+
+animations {
+    off
+}
+
+window-rule {
+    match app-id="com.mitchellh.ghostty"
+    opacity 0.90
+}
+
+// sysc-greet con ghostty
+spawn-at-startup "gslapper" "-f" "-I" "/tmp/sysc-greet-wallpaper.sock" "*" "/usr/share/sysc-greet/wallpapers/sysc-greet-default.png"
+spawn-sh-at-startup "XDG_CACHE_HOME=/tmp/greeter-cache HOME=/var/lib/greeter ghostty --fullscreen=true --config-file=/etc/greetd/ghostty.conf -e sysc-greet; niri msg action quit --skip-confirmation"
+
+binds {
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+F2 { spawn "chvt" "2"; }
+}
