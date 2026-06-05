@@ -1,0 +1,17 @@
+{
+  "colorscheme": "kanagawabones",
+  "syntax": true,
+  "tabsize": 2,
+  "expandtab": true,
+  "autoindent": true,
+  "smartindent": true,
+  "tabstospaces": true,
+  "ruler": true,
+  "softwrap": false,
+  "autosave": 0,
+  "savecursor": true,
+  "saveundo": true,
+  "scrollbar": false,
+  "statusline": true,
+  "filetype": "unknown"
+}

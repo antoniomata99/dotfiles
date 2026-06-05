@@ -1,0 +1,17 @@
+# Ghostty — dankpad (amata)
+# Tema Kanagawabones (built-in en Ghostty 1.3.1)
+
+font-family                = JetBrainsMono Nerd Font
+font-size                  = 14
+theme                      = Kanagawabones
+background-opacity         = 0.9
+cursor-style               = block
+cursor-style-blink         = false
+mouse-hide-while-typing    = true
+copy-on-select             = clipboard
+
+# Integración con Zsh (auto-inject — no requiere config manual en .zshrc)
+shell-integration          = detect
+
+# Wayland
+gtk-single-instance        = desktop
